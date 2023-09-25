@@ -5,12 +5,8 @@ library(palmerpenguins)
 library(ggplot2)
 ggplot2::theme_set(ggplot2::theme_minimal())
 
-
-penguins$bill_length_mm_char <- as.character(penguins$bill_length_mm)
-
-
-# About the data
-# Data were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network. The palmerpenguins package contains two datasets. One is called penguins, and is a simplified version of the raw data; see ?penguins for more info.
+#About the data
+#Data were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network. The palmerpenguins package contains two datasets. One is called penguins, and is a simplified version of the raw data; see ?penguins for more info.
 # Source: https://github.com/allisonhorst/palmerpenguins/blob/main/README.md
 ?penguins
 
@@ -52,29 +48,6 @@ penguins %>% filter(species == "Adelie") %>% summarise(
   flipperlength_var = var(flipper_length_mm),
   flipperlength_iqr = IQR(flipper_length_mm)
 )
-
-
-
-
-# EDA examples 
-
-# histogram for quantitative var
-ggplot(data = penguins, aes(x=flipper_length_mm)) + geom_histogram()
-
-# comparing quantitative var (flipper length) with categorical var (species), with fill
-ggplot(data = penguins, aes(x=flipper_length_mm, fill=species)) + geom_histogram()
-
-# as above, but with facet wrap
-ggplot(data = penguins, aes(x=flipper_length_mm)) + geom_histogram() + facet_wrap(vars(species))
-
-# boxplot
-penguins %>% ggplot(aes(x=flipper_length_mm, fill=species)) + geom_boxplot()
-
-# scatterplot, 2 quantitative vars
-penguins %>% ggplot(aes(x=flipper_length_mm, y=bill_length_mm)) + geom_point()
-
-# scatterplot, 2 quantitative vars
-penguins %>% ggplot(aes(x=flipper_length_mm, y=bill_length_mm, color=species)) + geom_point()
 
 
 
