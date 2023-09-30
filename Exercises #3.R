@@ -56,5 +56,8 @@ ggplot(data = tab1, aes(x=Engine, y=Value, fill=Gear)) +
   theme_wsj()
 
 
+barplot(table(mtcars$gear))
+
+
 
 

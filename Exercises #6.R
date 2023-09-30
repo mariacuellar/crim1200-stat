@@ -124,3 +124,93 @@ penguins %>% ggplot(aes(x=body_mass_g)) + geom_histogram() + facet_grid(vars(spe
 # compare two quantitative variables using scatterplot
 penguins %>% ggplot(aes(x=body_mass_g, y=flipper_length_mm, color=species)) + geom_point()
 
+
+
+
+library(tidyverse)
+
+samplesize = 300
+
+crimetype <- sample(1:3, size = samplesize, replace = TRUE, prob = c(.07, .3, .5))
+crimetype <- as.factor(crimetype)
+levels(crimetype) <- c("murder", "aggravated assault", "forcible rape")
+
+crimetype
+
+age <- rnorm(n=samplesize, mean=39, sd=10)
+age <- ifelse(age<=18, 18, age)
+hist(age, xlim=c(0,100))
+age <- round(age, digits = 0)
+
+age  
+  
+gender <- rbinom(n=samplesize, size=1, prob=0.1)
+gender <- as.factor(gender)
+levels(gender) <- c("male", "female")
+
+gender
+
+# install.packages("FamilyRank")
+library(FamilyRank)
+mentalhealthscore <- rbinorm(n=samplesize, mean1=5, mean2=15, sd1=2, sd2=3, prop=.5)
+mentalhealthscore <- ifelse(mentalhealthscore <= 0, 0 , mentalhealthscore)
+hist(mentalhealthscore)
+mentalhealthscore <- round(mentalhealthscore, digits = 1)
+
+mentalhealthscore
+
+
+
+  crime.dat <- data.frame(crimetype, age, gender, mentalhealthscore)
+
+as_tibble(crime.dat)
+
+write.csv(crime.dat, "/Users/mariacuellar/Documents/Penn/Classes/Statistics for the Social Sciences - Crim 1200/Fall 2023/Quizzes/crime.dat.csv", row.names=FALSE)
+
+crime.dat %>% ggplot(aes(x=gender, y=mentalhealthscore)) + geom_boxplot()
+
+plot(crime.dat$age, crime.dat$mentalhealthscore)
+
+
+
+
+
+
+
+
+
+
+
+
+cbind(crimetype, age, )
+
+
+barplot(table(dat$education, dat$gender), beside=TRUE)
+legend("topleft", c("A","B"))
+
+melt(dat) %>% ggplot(aes(x=education, y=value, fill=gender)) + geom_bar(stat="identity", position="dodge")
+
+melt(dat) %>% ggplot(aes(x=gender, y=value, fill=education)) + geom_bar(stat="identity", position="dodge")
+
+melt(dat) %>% ggplot(aes(x=gender, y=value)) + geom_bar(stat="identity")
+ 
+
+
+df = melt(data.frame(A=c(2, 10), B=c(3, 20), 
+                     experiment=c("X", "X & Y")),
+          variable_name="metric")
+
+ggplot(df, aes(experiment, value, fill=metric)) + 
+  geom_bar(position="dodge")
+
+
+
+
+
+
+
+
+
+
+
+
